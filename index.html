@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ZenTimer - Mindful Productivity Timer</title>
+    <meta name="description" content="Focus. Timer. Zen. The mindful productivity timer that respects your privacy.">
+    <style>
+        /* CSS Variables for ZenTimer's warm, mindful aesthetic */
+        :root {
+            --background: #ffffff;
+            --foreground: #374151;
+            --card: #fefce8;
+            --card-foreground: #374151;
+            --primary: #d97706;
+            --primary-foreground: #ffffff;
+            --secondary: #10b981;
+            --secondary-foreground: #ffffff;
+            --muted: #fefce8;
+            --muted-foreground: #374151;
+            --accent: #10b981;
+            --accent-foreground: #ffffff;
+            --border: #e5e7eb;
+            --input: #f1f5f9;
+            --radius: 0.5rem;
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            height: 4rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background-color: #1f2937;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--foreground);
+        }
+
+        .nav {
+            display: none;
+            align-items: center;
+            gap: 1.5rem;
+        }
+
+        @media (min-width: 768px) {
+            .nav {
+                display: flex;
+            }
+        }
+
+        .nav a {
+            color: var(--muted-foreground);
+            text-decoration: none;
+            transition: color 0.2s;
+        }
+
+        .nav a:hover {
+            color: var(--foreground);
+        }
+
+        .cta-button {
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: black;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-size: 0.875rem;
+            transition: background-color 0.2s;
+        }
+
+        @media (min-width: 768px) {
+            .cta-button {
+                display: inline-flex;
+            }
+        }
+
+        .cta-button:hover {
+            background-color: #1f2937;
+        }
+
+        /* Hero section */
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, var(--background) 0%, var(--muted) 30%, rgba(217, 119, 6, 0.05) 100%);
+            padding: 5rem 0 8rem;
+        }
+
+        @media (min-width: 1024px) {
+            .hero {
+                padding: 8rem 0;
+            }
+        }
+
+        .hero-content {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+
+        .hero-text {
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+        }
+
+        .hero-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            line-height: 1.1;
+        }
+
+        @media (min-width: 1024px) {
+            .hero-title {
+                font-size: 3.75rem;
+            }
+        }
+
+        .hero-title .highlight {
+            color: var(--primary);
+        }
+
+        .hero-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+        }
+
+        @media (min-width: 1024px) {
+            .hero-subtitle {
+                font-size: 1.5rem;
+            }
+        }
+
+        .hero-description {
+            font-size: 1.125rem;
+            font-weight: 500;
+            color: var(--foreground);
+        }
+
+        .hero-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+        }
+
+        @media (min-width: 640px) {
+            .hero-buttons {
+                flex-direction: row;
+            }
+        }
+
+        .app-store-button {
+            display: inline-block;
+            transition: opacity 0.2s;
+        }
+
+        .app-store-button:hover {
+            opacity: 0.8;
+        }
+
+        .app-store-button img {
+            width: 180px;
+            height: 60px;
+        }
+
+        .hero-image {
+            position: relative;
+            max-width: 20rem;
+            margin: 0 auto;
+        }
+
+        .hero-image img {
+            width: 100%;
+            height: auto;
+            filter: drop-shadow(0 25px 25px rgba(0, 0, 0, 0.15));
+        }
+
+        .hero-image::after {
+            content: '';
+            position: absolute;
+            inset: -1rem;
+            background: linear-gradient(45deg, rgba(217, 119, 6, 0.2), rgba(16, 185, 129, 0.2));
+            border-radius: 1.5rem;
+            filter: blur(3rem);
+            z-index: -1;
+        }
+
+        /* Features section */
+        .features {
+            padding: 5rem 0;
+            background-color: rgba(254, 252, 232, 0.3);
+        }
+
+        .features-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .features-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+        }
+
+        @media (min-width: 1024px) {
+            .features-title {
+                font-size: 2.25rem;
+            }
+        }
+
+        .features-title .highlight {
+            color: var(--primary);
+        }
+
+        .features-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        .features-grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 64rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        .feature-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            transition: box-shadow 0.3s;
+        }
+
+        .feature-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .feature-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius);
+            background-color: rgba(217, 119, 6, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 1rem;
+            color: var(--primary);
+        }
+
+        .feature-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-description {
+            color: var(--muted-foreground);
+            line-height: 1.6;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background-color: rgba(254, 252, 232, 0.3);
+        }
+
+        .footer-content {
+            padding: 3rem 1rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), rgba(217, 119, 6, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .footer-logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--foreground);
+        }
+
+        .footer-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+            line-height: 1.6;
+            max-width: 24rem;
+            margin: 0 auto 1.5rem;
+        }
+
+        .footer-button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 0.5rem;
+            background-color: black;
+            color: white;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            transition: background-color 0.2s;
+            margin-bottom: 2rem;
+        }
+
+        .footer-button:hover {
+            background-color: #1f2937;
+        }
+
+        .footer-bottom {
+            border-top: 1px solid var(--border);
+            padding-top: 2rem;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Icons */
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+
+        .icon-sm {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        .icon-lg {
+            width: 1.5rem;
+            height: 1.5rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <div class="logo">
+                    <div class="logo-icon">Z</div>
+                    <span class="logo-text">ZenTimer</span>
+                </div>
+
+                <nav class="nav">
+                    <a href="#features">Features</a>
+                </nav>
+
+                <a href="#" class="cta-button">
+                    <svg class="icon icon-sm" viewBox="0 0 24 24">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    App Store
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div>
+                        <h1 class="hero-title">
+                            Focus. Timer. <span class="highlight">Zen.</span>
+                        </h1>
+                        <p class="hero-subtitle">
+                            Where productivity meets mindfulness.
+                        </p>
+                    </div>
+
+                    <div>
+                        <p class="hero-description">Pure focus, zero distractions, complete privacy.</p>
+                    </div>
+
+                    <div class="hero-buttons">
+                        <a href="#" class="app-store-button">
+                            <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiB2aWV3Qm94PSIwIDAgMTgwIDYwIiBmaWxsPSJub25lIiB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciPgo8cmVjdCB3aWR0aD0iMTgwIiBoZWlnaHQ9IjYwIiByeD0iMTAiIGZpbGw9ImJsYWNrIi8+CjxwYXRoIGQ9Ik0zMCA0MEMzMCA0Mi4yMDkxIDMxLjc5MDkgNDQgMzQgNDRDMzYuMjA5MSA0NCAzOCA0Mi4yMDkxIDM4IDQwQzM4IDM3Ljc5MDkgMzYuMjA5MSAzNiAzNCAzNkMzMS43OTA5IDM2IDMwIDM3Ljc5MDkgMzAgNDBaIiBmaWxsPSJ3aGl0ZSIvPgo8dGV4dCB4PSI1MCIgeT0iMjUiIGZpbGw9IndoaXRlIiBmb250LWZhbWlseT0iQXJpYWwiIGZvbnQtc2l6ZT0iMTAiPkRvd25sb2FkIG9uIHRoZTwvdGV4dD4KPHRleHQgeD0iNTAiIHk9IjQwIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjE2IiBmb250LXdlaWdodD0iYm9sZCI+QXBwIFN0b3JlPC90ZXh0Pgo8L3N2Zz4K" alt="Download on the App Store">
+                        </a>
+                    </div>
+                </div>
+
+                <div class="hero-image">
+                    <img src="data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMzAwIiBoZWlnaHQ9IjYwMCIgdmlld0JveD0iMCAwIDMwMCA2MDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+CjxyZWN0IHdpZHRoPSIzMDAiIGhlaWdodD0iNjAwIiByeD0iNDAiIGZpbGw9InVybCgjZ3JhZGllbnQwX2xpbmVhcl8xXzEpIi8+CjxjaXJjbGUgY3g9IjE1MCIgY3k9IjMwMCIgcj0iMTIwIiBzdHJva2U9IndoaXRlIiBzdHJva2Utd2lkdGg9IjQiLz4KPGNpcmNsZSBjeD0iMTUwIiBjeT0iMzAwIiByPSI4MCIgZmlsbD0icmdiYSgyNTUsIDI1NSwgMjU1LCAwLjEpIi8+Cjx0ZXh0IHg9IjE1MCIgeT0iMzEwIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBmaWxsPSJ3aGl0ZSIgZm9udC1mYW1pbHk9IkFyaWFsIiBmb250LXNpemU9IjI0IiBmb250LXdlaWdodD0iYm9sZCI+MjU6MDA8L3RleHQ+CjxkZWZzPgo8bGluZWFyR3JhZGllbnQgaWQ9ImdyYWRpZW50MF9saW5lYXJfMV8xIiB4MT0iMCIgeTE9IjAiIHgyPSIzMDAiIHkyPSI2MDAiIGdyYWRpZW50VW5pdHM9InVzZXJTcGFjZU9uVXNlIj4KPHN0b3Agc3RvcC1jb2xvcj0iI0Q5NzcwNiIvPgo8c3RvcCBvZmZzZXQ9IjEiIHN0b3AtY29sb3I9IiNGNzkyMDYiLz4KPC9saW5lYXJHcmFkaWVudD4KPC9kZWZzPgo8L3N2Zz4K" alt="ZenTimer app interface showing circular timer">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="features">
+        <div class="container">
+            <div class="features-header">
+                <h2 class="features-title">
+                    Everything you need for <span class="highlight">mindful productivity</span>
+                </h2>
+                <p class="features-subtitle">
+                    ZenTimer for iOS combines simplicity with powerful features to help you focus.
+                </p>
+            </div>
+
+            <div class="features-grid">
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Privacy-First Design</h3>
+                    <p class="feature-description">
+                        Zero data collection, completely offline, no account required. Your focus sessions stay private.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"/>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Intuitive Timer Control</h3>
+                    <p class="feature-description">
+                        Drag the circular handle to set 1-60 minute focus sessions. Simple, elegant, distraction-free.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 17h5l-5 5v-5zM4.828 7l16.97 16.97M9 3h6v4l-6-6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">Smart Notifications</h3>
+                    <p class="feature-description">
+                        Choose from vibration, flash, sound, or silent alerts that adapt to your environment.
+                    </p>
+                </div>
+
+                <div class="feature-card">
+                    <div class="feature-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20.354 15.354A9 9 0 018.646 3.646 9.003 9.003 0 0012 21a9.003 9.003 0 008.354-5.646z"/>
+                        </svg>
+                    </div>
+                    <h3 class="feature-title">iOS Focus Integration</h3>
+                    <p class="feature-description">
+                        Seamlessly works with iOS Focus modes for completely distraction-free sessions.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <div class="footer-logo-icon">Z</div>
+                    <span class="footer-logo-text">ZenTimer</span>
+                </div>
+
+                <p class="footer-description">
+                    The mindful productivity timer for iOS that respects your privacy.
+                </p>
+
+                <a href="#" class="footer-button">
+                    <svg class="icon icon-lg" viewBox="0 0 24 24" fill="currentColor">
+                        <path d="M18.71 19.5c-.83 1.24-1.71 2.45-3.05 2.47-1.34.03-1.77-.79-3.29-.79-1.53 0-2 .77-3.27.82-1.31.05-2.3-1.32-3.14-2.53C4.25 17 2.94 12.45 4.7 9.39c.87-1.52 2.43-2.48 4.12-2.51 1.28-.02 2.5.87 3.29.87.78 0 2.26-1.07 3.81-.91.65.03 2.47.26 3.64 1.98-.09.06-2.17 1.28-2.15 3.81.03 3.02 2.65 4.03 2.68 4.04-.03.07-.42 1.44-1.38 2.83M13 3.5c.73-.83 1.94-1.46 2.94-1.5.13 1.17-.34 2.35-1.04 3.19-.69.85-1.83 1.51-2.95 1.42-.15-1.15.41-2.35 1.05-3.11z" />
+                    </svg>
+                    Download on the App Store
+                </a>
+
+                <div class="footer-bottom">
+                    <p class="footer-copyright">
+                        © 2024 ZenTimer. Made with mindfulness for focused productivity.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
