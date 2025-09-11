@@ -1,30 +1,34 @@
-# Marketing website design
+# ZenTimer Marketing Website
 
-*Automatically synced with your [v0.app](https://v0.app) deployments*
-
-[![Deployed on Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?style=for-the-badge&logo=vercel)](https://vercel.com/popands-projects/v0-marketing-website-design)
-[![Built with v0](https://img.shields.io/badge/Built%20with-v0.app-black?style=for-the-badge)](https://v0.app/chat/projects/yKV0KETtLa7)
+A clean, mindful marketing website for ZenTimer - the privacy-first productivity timer for iOS.
 
 ## Overview
 
-This repository will stay in sync with your deployed chats on [v0.app](https://v0.app).
-Any changes you make to your deployed app will be automatically pushed to this repository from [v0.app](https://v0.app).
+ZenTimer combines simplicity with powerful features to help you focus. This marketing website showcases the app's key features:
+
+- **Privacy-First Design**: Zero data collection, completely offline, no account required
+- **Intuitive Timer Control**: Drag the circular handle to set 1-60 minute focus sessions
+- **Smart Notifications**: Choose from vibration, flash, sound, or silent alerts
+- **iOS Focus Integration**: Seamlessly works with iOS Focus modes
+
+## Features
+
+- Responsive design optimized for all devices
+- Clean, minimalist aesthetic matching the app's zen philosophy
+- App Store integration with official download buttons
+- Warm, mindful color scheme using orange and green accents
+
+## Tech Stack
+
+- Pure HTML/CSS (no frameworks)
+- CSS Grid and Flexbox for responsive layouts
+- CSS Variables for consistent theming
+- Optimized for performance and accessibility
+
+## Local Development
+
+Simply open `index.html` in your browser to view the site locally.
 
 ## Deployment
 
-Your project is live at:
-
-**[https://vercel.com/popands-projects/v0-marketing-website-design](https://vercel.com/popands-projects/v0-marketing-website-design)**
-
-## Build your app
-
-Continue building your app on:
-
-**[https://v0.app/chat/projects/yKV0KETtLa7](https://v0.app/chat/projects/yKV0KETtLa7)**
-
-## How It Works
-
-1. Create and modify your project using [v0.app](https://v0.app)
-2. Deploy your chats from the v0 interface
-3. Changes are automatically pushed to this repository
-4. Vercel deploys the latest version from this repository
+The site can be deployed to any static hosting service (Vercel, Netlify, GitHub Pages, etc.).
