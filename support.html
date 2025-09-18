@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Support - ZenTimer</title>
+    <meta name="description" content="Get help with ZenTimer - Find answers to common questions, troubleshooting guides, and contact support.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/favicon-192x192.png">
+    <style>
+        /* CSS Variables for ZenTimer's warm, mindful aesthetic */
+        :root {
+            --background: #ffffff;
+            --foreground: #374151;
+            --card: #fefce8;
+            --card-foreground: #374151;
+            --primary: #d97706;
+            --primary-foreground: #ffffff;
+            --secondary: #10b981;
+            --secondary-foreground: #ffffff;
+            --muted: #fefce8;
+            --muted-foreground: #374151;
+            --accent: #10b981;
+            --accent-foreground: #ffffff;
+            --border: #e5e7eb;
+            --input: #f1f5f9;
+            --radius: 0.5rem;
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            height: 4rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), rgba(217, 119, 6, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--foreground);
+        }
+
+        /* Hero section */
+        .support-hero {
+            padding: 4rem 0;
+            background: linear-gradient(135deg, var(--background) 0%, var(--muted) 30%, rgba(217, 119, 6, 0.05) 100%);
+            text-align: center;
+        }
+
+        .support-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .support-title .highlight {
+            color: var(--primary);
+        }
+
+        .support-subtitle {
+            font-size: 1.25rem;
+            color: var(--muted-foreground);
+            max-width: 32rem;
+            margin: 0 auto;
+        }
+
+        /* Back to home link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 2rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--foreground);
+        }
+
+        .back-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Quick links section */
+        .quick-links {
+            padding: 3rem 0;
+        }
+
+        .quick-links-grid {
+            display: grid;
+            gap: 1.5rem;
+            max-width: 48rem;
+            margin: 0 auto;
+        }
+
+        @media (min-width: 768px) {
+            .quick-links-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+
+        .quick-link-card {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            text-decoration: none;
+            color: var(--card-foreground);
+            transition: all 0.3s;
+        }
+
+        .quick-link-card:hover {
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .quick-link-icon {
+            width: 3rem;
+            height: 3rem;
+            border-radius: var(--radius);
+            background-color: rgba(217, 119, 6, 0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin: 0 auto 1rem;
+            color: var(--primary);
+        }
+
+        .quick-link-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+        }
+
+        .quick-link-description {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Support content */
+        .support-content {
+            max-width: 48rem;
+            margin: 0 auto;
+            padding: 0 1rem 3rem;
+        }
+
+        .support-section {
+            margin-bottom: 3rem;
+        }
+
+        .section-title {
+            font-size: 1.875rem;
+            font-weight: bold;
+            margin-bottom: 1.5rem;
+            color: var(--foreground);
+        }
+
+        .section-subtitle {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            margin-bottom: 2rem;
+        }
+
+        /* FAQ styles */
+        .faq-item {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            margin-bottom: 1rem;
+            overflow: hidden;
+        }
+
+        .faq-question {
+            width: 100%;
+            padding: 1.5rem;
+            background: none;
+            border: none;
+            text-align: left;
+            font-size: 1.125rem;
+            font-weight: 600;
+            color: var(--foreground);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: background-color 0.2s;
+        }
+
+        .faq-question:hover {
+            background-color: rgba(217, 119, 6, 0.05);
+        }
+
+        .faq-icon {
+            width: 1rem;
+            height: 1rem;
+            transition: transform 0.2s;
+        }
+
+        .faq-answer {
+            padding: 0 1.5rem 1.5rem;
+            color: var(--card-foreground);
+            line-height: 1.6;
+            display: none;
+        }
+
+        .faq-answer.open {
+            display: block;
+        }
+
+        .faq-question.open .faq-icon {
+            transform: rotate(180deg);
+        }
+
+        /* Contact section */
+        .contact-section {
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+            text-align: center;
+            margin-top: 3rem;
+        }
+
+        .contact-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .contact-description {
+            color: var(--muted-foreground);
+            margin-bottom: 1.5rem;
+        }
+
+        .contact-email {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--radius);
+            text-decoration: none;
+            font-weight: 500;
+            transition: background-color 0.2s;
+        }
+
+        .contact-email:hover {
+            background-color: rgba(217, 119, 6, 0.9);
+        }
+
+        .email-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+
+        /* Steps list */
+        .steps-list {
+            list-style: none;
+            counter-reset: step-counter;
+        }
+
+        .steps-list li {
+            counter-increment: step-counter;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-bottom: 1rem;
+            position: relative;
+            padding-left: 4rem;
+        }
+
+        .steps-list li::before {
+            content: counter(step-counter);
+            position: absolute;
+            left: 1.5rem;
+            top: 1.5rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            background-color: var(--primary);
+            color: var(--primary-foreground);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background-color: rgba(254, 252, 232, 0.3);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Icon styles */
+        .icon {
+            width: 1.5rem;
+            height: 1.5rem;
+            fill: currentColor;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">Z</div>
+                    <span class="logo-text">ZenTimer</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="support-hero">
+        <div class="container">
+            <h1 class="support-title">How Can We <span class="highlight">Help?</span></h1>
+            <p class="support-subtitle">Find answers, get support, and make the most of your mindful productivity journey.</p>
+        </div>
+    </section>
+
+    <!-- Quick Links -->
+    <section class="quick-links">
+        <div class="container">
+
+            <div class="quick-links-grid">
+                <a href="#getting-started" class="quick-link-card">
+                    <div class="quick-link-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.746 0 3.332.477 4.5 1.253v13C19.832 18.477 18.246 18 16.5 18c-1.746 0-3.332.477-4.5 1.253"/>
+                        </svg>
+                    </div>
+                    <h3 class="quick-link-title">Getting Started</h3>
+                    <p class="quick-link-description">Learn how to set up and use ZenTimer for optimal focus sessions.</p>
+                </a>
+
+                <a href="#faq" class="quick-link-card">
+                    <div class="quick-link-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"/>
+                        </svg>
+                    </div>
+                    <h3 class="quick-link-title">FAQ</h3>
+                    <p class="quick-link-description">Find answers to the most commonly asked questions about ZenTimer.</p>
+                </a>
+
+                <a href="#contact" class="quick-link-card">
+                    <div class="quick-link-icon">
+                        <svg class="icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="quick-link-title">Contact Us</h3>
+                    <p class="quick-link-description">Get in touch with our support team for personalized assistance.</p>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Support Content -->
+    <main class="support-content">
+        <!-- Getting Started -->
+        <section id="getting-started" class="support-section">
+            <h2 class="section-title">Getting Started</h2>
+            <p class="section-subtitle">Follow these simple steps to start your mindful productivity journey with ZenTimer.</p>
+
+            <ol class="steps-list">
+                <li>
+                    <strong>Download ZenTimer</strong><br>
+                    Get ZenTimer from the App Store on your iOS device. No account creation required!
+                </li>
+                <li>
+                    <strong>Open the App</strong><br>
+                    Launch ZenTimer and you'll see the beautiful circular timer interface ready to use.
+                </li>
+                <li>
+                    <strong>Set Your Timer</strong><br>
+                    Drag the circular handle to set your focus session from 1 to 60 minutes.
+                </li>
+                <li>
+                    <strong>Choose Notification Type</strong><br>
+                    Select from vibration, flash, sound, or silent alerts in the settings.
+                </li>
+                <li>
+                    <strong>Enable Focus Mode (Optional)</strong><br>
+                    Connect with iOS Focus modes for completely distraction-free sessions.
+                </li>
+                <li>
+                    <strong>Start Focusing</strong><br>
+                    Tap to start your timer and enjoy your mindful productivity session!
+                </li>
+            </ol>
+        </section>
+
+        <!-- FAQ -->
+        <section id="faq" class="support-section">
+            <h2 class="section-title">Frequently Asked Questions</h2>
+            <p class="section-subtitle">Quick answers to common questions about ZenTimer.</p>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Does ZenTimer require an internet connection?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    No! ZenTimer works completely offline. All functionality is available without any internet connection, ensuring your focus sessions are never interrupted by connectivity issues.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Is my data private and secure?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    Absolutely! ZenTimer collects zero personal data. Everything stays on your device. No tracking, no analytics, no data transmission. Your focus sessions remain completely private.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I customize notification types?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    Yes! Choose from vibration, camera flash, sound alerts, or silent mode. ZenTimer adapts to your environment and preferences for the perfect notification experience.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    How does iOS Focus Mode integration work?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    ZenTimer seamlessly works with iOS Focus modes to create distraction-free sessions. When you start a timer, you can enable Focus mode to block notifications and apps automatically.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    What's the timer range?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    You can set focus sessions from 1 minute to 60 minutes using the intuitive circular handle. Perfect for both quick focus bursts and longer deep work sessions.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Does ZenTimer work in the background?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    Yes! Once you start a timer, you can switch to other apps or lock your device. ZenTimer will notify you when your focus session is complete, regardless of what you're doing.
+                </div>
+            </div>
+
+            <div class="faq-item">
+                <button class="faq-question" onclick="toggleFaq(this)">
+                    Can I use ZenTimer on multiple devices?
+                    <svg class="faq-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/>
+                    </svg>
+                </button>
+                <div class="faq-answer">
+                    ZenTimer is designed for iOS devices. Since no data is synced or stored externally, each device operates independently with complete privacy.
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact-section">
+            <h3 class="contact-title">Still Need Help?</h3>
+            <p class="contact-description">
+                Can't find what you're looking for? Our support team is here to help you get the most out of your mindful productivity journey.
+            </p>
+            <a href="mailto:thezentimerapp@gmail.com" class="contact-email">
+                <svg class="email-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 4.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z"/>
+                </svg>
+                Contact Support
+            </a>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">
+                    © 2025 ZenTimer. Made with mindfulness for focused productivity.
+                </p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        function toggleFaq(button) {
+            const answer = button.nextElementSibling;
+            const icon = button.querySelector('.faq-icon');
+
+            // Close all other FAQ items
+            document.querySelectorAll('.faq-question').forEach(q => {
+                if (q !== button) {
+                    q.classList.remove('open');
+                    q.nextElementSibling.classList.remove('open');
+                }
+            });
+
+            // Toggle current FAQ item
+            button.classList.toggle('open');
+            answer.classList.toggle('open');
+        }
+
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Update back link to go to home
+        document.querySelector('.back-link').href = '/';
+    </script>
+</body>
+</html>

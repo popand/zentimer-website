@@ -1,0 +1,400 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Privacy Policy - ZenTimer</title>
+    <meta name="description" content="ZenTimer Privacy Policy - Learn how we protect your privacy with zero data collection and offline-first design.">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/x-icon" href="/favicon.ico">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="/favicon-192x192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon-512x512.png">
+    <link rel="apple-touch-icon" href="/favicon-192x192.png">
+    <style>
+        /* CSS Variables for ZenTimer's warm, mindful aesthetic */
+        :root {
+            --background: #ffffff;
+            --foreground: #374151;
+            --card: #fefce8;
+            --card-foreground: #374151;
+            --primary: #d97706;
+            --primary-foreground: #ffffff;
+            --secondary: #10b981;
+            --secondary-foreground: #ffffff;
+            --muted: #fefce8;
+            --muted-foreground: #374151;
+            --accent: #10b981;
+            --accent-foreground: #ffffff;
+            --border: #e5e7eb;
+            --input: #f1f5f9;
+            --radius: 0.5rem;
+        }
+
+        /* Base styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--foreground);
+            background-color: var(--background);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        /* Header styles */
+        header {
+            position: sticky;
+            top: 0;
+            z-index: 50;
+            width: 100%;
+            border-bottom: 1px solid var(--border);
+            background-color: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+        }
+
+        .header-content {
+            display: flex;
+            height: 4rem;
+            align-items: center;
+            justify-content: space-between;
+            padding: 0 1rem;
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            text-decoration: none;
+        }
+
+        .logo-icon {
+            width: 2rem;
+            height: 2rem;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--primary), rgba(217, 119, 6, 0.8));
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--primary-foreground);
+            font-weight: bold;
+            font-size: 0.875rem;
+        }
+
+        .logo-text {
+            font-weight: bold;
+            font-size: 1.25rem;
+            color: var(--foreground);
+        }
+
+        /* Privacy policy content */
+        .privacy-content {
+            max-width: 48rem;
+            margin: 0 auto;
+            padding: 3rem 1rem;
+        }
+
+        .privacy-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .privacy-title {
+            font-size: 2.5rem;
+            font-weight: bold;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .privacy-title .highlight {
+            color: var(--primary);
+        }
+
+        .privacy-subtitle {
+            font-size: 1.125rem;
+            color: var(--muted-foreground);
+            margin-bottom: 0.5rem;
+        }
+
+        .last-updated {
+            font-size: 0.875rem;
+            color: var(--muted-foreground);
+            font-style: italic;
+        }
+
+        .privacy-section {
+            margin-bottom: 2.5rem;
+            background-color: var(--card);
+            border: 1px solid var(--border);
+            border-radius: var(--radius);
+            padding: 2rem;
+        }
+
+        .section-title {
+            font-size: 1.5rem;
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: var(--foreground);
+        }
+
+        .section-content {
+            color: var(--card-foreground);
+            line-height: 1.7;
+        }
+
+        .section-content p {
+            margin-bottom: 1rem;
+        }
+
+        .section-content ul {
+            margin: 1rem 0;
+            padding-left: 1.5rem;
+        }
+
+        .section-content li {
+            margin-bottom: 0.5rem;
+        }
+
+        .highlight-box {
+            background-color: rgba(217, 119, 6, 0.1);
+            border-left: 4px solid var(--primary);
+            padding: 1rem;
+            margin: 1.5rem 0;
+            border-radius: 0 var(--radius) var(--radius) 0;
+        }
+
+        .highlight-box p {
+            margin: 0;
+            font-weight: 500;
+        }
+
+        .contact-info {
+            background-color: rgba(16, 185, 129, 0.1);
+            border: 1px solid rgba(16, 185, 129, 0.2);
+            border-radius: var(--radius);
+            padding: 1.5rem;
+            margin-top: 2rem;
+            text-align: center;
+        }
+
+        .contact-title {
+            font-size: 1.25rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: var(--foreground);
+        }
+
+        .contact-email {
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+        }
+
+        .contact-email:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid var(--border);
+            background-color: rgba(254, 252, 232, 0.3);
+            margin-top: 3rem;
+        }
+
+        .footer-content {
+            padding: 2rem 1rem;
+            text-align: center;
+        }
+
+        .footer-copyright {
+            color: var(--muted-foreground);
+            font-size: 0.875rem;
+        }
+
+        /* Back to home link */
+        .back-link {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            color: var(--primary);
+            text-decoration: none;
+            font-weight: 500;
+            margin-bottom: 1rem;
+            transition: color 0.2s;
+        }
+
+        .back-link:hover {
+            color: var(--foreground);
+        }
+
+        .back-icon {
+            width: 1rem;
+            height: 1rem;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <div class="container">
+            <div class="header-content">
+                <a href="/" class="logo">
+                    <div class="logo-icon">Z</div>
+                    <span class="logo-text">ZenTimer</span>
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <!-- Privacy Policy Content -->
+    <main class="privacy-content">
+        <div class="privacy-header">
+            <h1 class="privacy-title">Privacy <span class="highlight">Policy</span></h1>
+            <p class="privacy-subtitle">Your privacy is our priority</p>
+            <p class="last-updated">Last Updated: January 18, 2025</p>
+        </div>
+
+        
+
+        <div class="highlight-box">
+            <p><strong>Privacy-First Promise:</strong> ZenTimer is designed with complete privacy in mind. We collect zero personal data, work entirely offline, and require no account creation.</p>
+        </div>
+
+        <section class="privacy-section">
+            <h2 class="section-title">1. Introduction</h2>
+            <div class="section-content">
+                <p>Welcome to ZenTimer, the mindful productivity timer for iOS. This Privacy Policy explains how we handle your information when you use our app.</p>
+                <p>ZenTimer is built on the principle of complete user privacy. We believe that your focus sessions, productivity habits, and usage patterns should remain private to you.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">2. Information We DON'T Collect</h2>
+            <div class="section-content">
+                <p>ZenTimer is designed to collect <strong>zero personal data</strong>. We do not collect, store, or transmit:</p>
+                <ul>
+                    <li>Personal identification information</li>
+                    <li>Usage statistics or analytics</li>
+                    <li>Timer session data</li>
+                    <li>Focus session history</li>
+                    <li>Device identifiers</li>
+                    <li>Location data</li>
+                    <li>Contacts or personal information</li>
+                    <li>Any form of user behavior tracking</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">3. How ZenTimer Works</h2>
+            <div class="section-content">
+                <p><strong>Completely Offline:</strong> ZenTimer operates entirely on your device without any internet connection requirements. All timer functionality works locally.</p>
+                <p><strong>No Account Required:</strong> You can download and use ZenTimer immediately without creating any accounts or providing personal information.</p>
+                <p><strong>Local Storage Only:</strong> Any app preferences or settings are stored locally on your device using iOS's standard app storage mechanisms.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">4. iOS Integration & Permissions</h2>
+            <div class="section-content">
+                <p>ZenTimer integrates with iOS features to enhance your focus experience:</p>
+                <ul>
+                    <li><strong>Notifications:</strong> Used only to alert you when timer sessions complete. No data is transmitted.</li>
+                    <li><strong>Focus Modes:</strong> Integrates with iOS Focus modes for distraction-free sessions. This integration is handled entirely by iOS.</li>
+                    <li><strong>Haptic Feedback:</strong> Provides vibration alerts when sessions complete. No data is collected.</li>
+                </ul>
+                <p>All iOS integrations respect Apple's privacy standards and operate without external data transmission.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">5. Data Security</h2>
+            <div class="section-content">
+                <p>Since ZenTimer doesn't collect data, there's no personal information to secure or breach. However, we maintain security best practices:</p>
+                <ul>
+                    <li>App settings are stored using iOS's secure app storage</li>
+                    <li>No network connections or data transmission</li>
+                    <li>Regular security reviews of app code</li>
+                    <li>Compliance with Apple's App Store security requirements</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">6. Third-Party Services</h2>
+            <div class="section-content">
+                <p><strong>No Third-Party Integration:</strong> ZenTimer does not integrate with any third-party analytics, advertising, or tracking services.</p>
+                <p><strong>App Store:</strong> The only external service interaction is through Apple's App Store for app downloads and updates, which follows Apple's privacy policies.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">7. Children's Privacy</h2>
+            <div class="section-content">
+                <p>ZenTimer is safe for users of all ages. Since we don't collect any personal information, there are no special privacy concerns for children under 13.</p>
+                <p>Parents can confidently allow their children to use ZenTimer knowing that no personal data is collected or transmitted.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">8. International Users</h2>
+            <div class="section-content">
+                <p>ZenTimer's privacy-first design automatically complies with international privacy regulations including GDPR, CCPA, and other privacy laws because:</p>
+                <ul>
+                    <li>No personal data is collected</li>
+                    <li>No data processing occurs outside your device</li>
+                    <li>No data is stored on external servers</li>
+                    <li>No cross-border data transfers happen</li>
+                </ul>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">9. Changes to This Privacy Policy</h2>
+            <div class="section-content">
+                <p>We may update this Privacy Policy from time to time. Since ZenTimer doesn't collect personal data, most changes will be clarifications or additions to our privacy commitments.</p>
+                <p>Any updates will be posted on this page with a new "Last Updated" date. We encourage you to review this Privacy Policy periodically.</p>
+            </div>
+        </section>
+
+        <section class="privacy-section">
+            <h2 class="section-title">10. Your Rights</h2>
+            <div class="section-content">
+                <p>Since ZenTimer doesn't collect personal data, traditional data rights (access, deletion, portability) don't apply. However, you maintain complete control:</p>
+                <ul>
+                    <li><strong>Complete Privacy:</strong> Your timer sessions are never recorded or transmitted</li>
+                    <li><strong>Full Control:</strong> All app settings are stored locally and can be reset by deleting the app</li>
+                    <li><strong>No Tracking:</strong> We cannot and do not track your usage patterns</li>
+                </ul>
+            </div>
+        </section>
+
+        <div class="contact-info">
+            <h3 class="contact-title">Questions About Privacy?</h3>
+            <p>If you have any questions about this Privacy Policy or ZenTimer's privacy practices, please contact us at:</p>
+            <a href="mailto:thezentimerapp@gmail.com" class="contact-email">thezentimerapp@gmail.com</a>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer>
+        <div class="container">
+            <div class="footer-content">
+                <p class="footer-copyright">
+                    © 2025 ZenTimer. Made with mindfulness for focused productivity.
+                </p>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
